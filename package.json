@@ -1,0 +1,53 @@
+{
+  "name": "mdb-angular-ui-kit-free",
+  "version": "1.0.0-alpha1",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:lib": "ng-packagr -p projects/mdb-angular-ui-kit/ng-package.json && npm run schematics:build",
+    "schematics:build": "tsc -p projects/mdb-angular-ui-kit/tsconfig.schematics.json && npm run schematics:copy-schema && npm run schematics:copy-collection",
+    "schematics:copy-schema": "cp projects/mdb-angular-ui-kit/schematics/ng-add/schema.json dist/mdb-angular-ui-kit/schematics/ng-add",
+    "schematics:copy-collection": "cp projects/mdb-angular-ui-kit/schematics/collection.json dist/mdb-angular-ui-kit/schematics/",
+    "test": "ng test",
+    "test:lib": "ng test --project mdb-angular-ui-kit",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~11.0.1",
+    "@angular/cdk": "^11.0.3",
+    "@angular/common": "~11.0.1",
+    "@angular/compiler": "~11.0.1",
+    "@angular/core": "~11.0.1",
+    "@angular/forms": "~11.0.1",
+    "@angular/platform-browser": "~11.0.1",
+    "@angular/platform-browser-dynamic": "~11.0.1",
+    "@angular/router": "~11.0.1",
+    "@briebug/jest-schematic": "^3.1.0",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.0.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "11.0.0",
+    "@angular-devkit/build-angular": "~0.1100.2",
+    "@angular/cli": "~11.0.2",
+    "@angular/compiler-cli": "~11.0.1",
+    "@types/jasmine": "~3.6.0",
+    "@types/jest": "26.0.19",
+    "@types/node": "^12.11.1",
+    "codelyzer": "^6.0.0",
+    "jasmine-core": "~3.6.0",
+    "jasmine-spec-reporter": "~5.0.0",
+    "jest": "26.6.3",
+    "karma-coverage": "~2.0.3",
+    "ng-packagr": "^11.0.3",
+    "protractor": "~7.0.0",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "typescript": "~4.0.2"
+  }
+}
