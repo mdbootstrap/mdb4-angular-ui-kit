@@ -33,7 +33,7 @@ const mdbModules = [
 // tslint:disable-next-line: space-before-function-paren
 export default function (options: Schema): any {
   return async (tree: Tree) => {
-    const workspace = await getWorkspace(tree);
+    const workspace: any = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
@@ -117,7 +117,7 @@ function addRobotoFontToIndexHtml(options: Schema): any {
 
 function addStylesImports(options: Schema): any {
   return async (host: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(host);
+    const workspace: any = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     const logger = context.logger;
     const styleFilePath = getProjectStyleFile(project);
