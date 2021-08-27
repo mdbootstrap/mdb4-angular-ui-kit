@@ -35,10 +35,18 @@ git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.
 ``` 
 note "." at the end. It will clone files directly into current folder. 
 - Run `npm i`
-- Run `npm start mdb-angular`
+- Run `npm start`
 - Voilà! Open browser and visit http://localhost:4200 
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
+
+## Demo application
+
+Feel free to check our live example components: Just type `ng serve mdb-demo` in terminal!
+
+Type one of the below commands to remove demo application from this project:
+* npm `run remove-demo-unix` to remove demo application on UNIX based systems,
+* npm `run remove-demo-windows` to remove demo application on Windows systems.
 
 # Available commands
 
@@ -76,7 +84,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     schemas: [ NO_ERRORS_SCHEMA ]
 });
 ```
-- in angular-cli.json change:
+- in angular.json change:
 
 `"styleExt": "css"` to `"styleExt": "scss"`
 
@@ -84,7 +92,7 @@ rename /src/styles.css to styles.scss
 
 - if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
 
-- add below lines to angular-cli.json: 
+- add below lines to angular.json: 
 ```javascript
 "styles": [
     "node_modules/font-awesome/scss/font-awesome.scss",
@@ -104,7 +112,7 @@ npm install -–save chart.js@2.5.0 font-awesome hammerjs
 
 ### Run server
 ```bash
-ng serve --open
+ng serve mdb-angular --open
 ```
 
 ## Getting started:
