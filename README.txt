@@ -1,15 +1,26 @@
-MDB 5 Angular
+Material Design for Bootstrap - Angular
 
-Version: FREE 1.0.0
+Version: MDB - Angular 5.2.3
 
 Documentation:
-https://mdbootstrap.com/docs/b5/angular/
+http://mdbootstrap.com/angular/
 
-Installation:
-https://mdbootstrap.com/docs/b5/angular/getting-started/installation/
+Getting started:
+http://mdbootstrap.com/angular/getting-started/
 
-CLI & hosting:
-https://mdbootstrap.com/docs/standard/cli/
+FAQ
+http://mdbootstrap.com/angular/faq/
 
 Support:
-https://mdbootstrap.com/support/cat/angular/
+http://mdbootstrap.com/forums/forum/support/
+
+License:
+http://mdbootstrap.com/license/
+
+Facebook: https://facebook.com/mdbootstrap
+Twitter: https://twitter.com/MDBootstrap
+Google+: https://plus.google.com/u/0/+Mdbootstrap/posts
+Dribbble: https://dribbble.com/mdbootstrap
+
+Contact:
+office@mdbootstrap.com

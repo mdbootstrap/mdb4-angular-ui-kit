@@ -1,195 +1,186 @@
-![MDB Logo](https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-angular.png)
+[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Mockups/MDB-post/angular-about5.jpg)](https://mdbootstrap.com/angular/)
 
-# MDB 5 Angular
+# Angular Bootstrap with Material Design
 
-### Angular 12 & Bootstrap 5 & Material Design 2.0 UI KIT
+[![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
 
-**[>> Get Started in 4 steps](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)**
+Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
-**[>> MDBAngular 5 Demo](https://mdbootstrap.com/docs/b5/angular#demo)**
+400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
 
-<a href="https://npmcharts.com/compare/mdb-angular-ui-kit?minimal=true"> <img src="https://img.shields.io/npm/dw/mdb-angular-ui-kit" alt="Downloads"></a>
-<a href="https://github.com/mdbootstrap/mdb-angular-ui-kit/License.pdf"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
-<a href="https://twitter.com/intent/tweet/?text=Thanks+@mdbootstrap+for+creating+amazing+and+free+Material+Design+for+Bootstrap+4+UI+KIT%20https://mdbootstrap.com/docs/jquery/&hashtags=javascript,code,webdesign,bootstrap"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Let%20us%20know%20you%20were%20here%21&"></a>
-<a href="https://www.youtube.com/watch?v=c9B4TPnak1A&t=6s"><img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/c9B4TPnak1A?label=Bootstrap%205%20Tutorial%20Views&style=social"></a>
+All fully responsive. All compatible with different browsers.
 
----
+__________
 
-<table>
-  <tbody>
-    <tr>
-      <td>
-          <a href="https://mdbootstrap.com/docs/b5/angular/" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/about/assets/mdb5-about.jpg">
-          </a>
-      </td>
-      <td>
-        <ul>
-        <li><b>500+ material UI components</b></li>
-         <li>Super simple, 1 minute installation</li>
-         <li>Detailed docs & multiple practical examples</li>
-         <li>Angular 11</li>
-         <li>Huge and active community</li>
-         <li><b>MIT license - free for personal & commercial use</b></li>
-        </ul>
-      </td>
-    </tr>
-   </tbody>
-</table>
+# Demo:  
+**Main demo**: https://mdbootstrap.com/angular/components/
 
-Trusted by <b>2 000 000+</b> developers & designers. Used by companies like
+# Version:
+- Angular CLI 1.5.0 - 1.7.1
+- Angular 5.0.0 - 5.2.6
 
-<table>
-  <tbody>
-    <tr>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/nike.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/amazon.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/sony.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/samsung.png"  style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/airbus.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/yahoo.png"  style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/deloitte.png" style="height: 40px"></div>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/ge.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/kpmg.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/unity.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/ikea.png" style="max-height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/aegon.png" style="height: 40px">
-    </tr>
-   </tbody>
-</table>
+# Quick start
+- Clone following repo:  
+```javascript
+git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git .
+``` 
+note "." at the end. It will clone files directly into current folder. 
+- Run `npm i`
+- Run `npm start`
+- Voilà! Open browser and visit http://localhost:4200 
 
----
+Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
 
-###### Tutorial for the latest Bootstrap v.5 Alpha. In this video we'll learn about the changes implemented into v.5.
+# How to install MDB via npm:
+- create new project `ng new project_name --style=scss`
+- `npm i angular-bootstrap-md --save`
+- to app.module.ts add
+```javascript
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
-**[>> Click here for a written tutorial](https://mdbootstrap.com/docs/b5/angular/getting-started/quick-start/)**
+@NgModule({
+    imports: [
+        MDBBootstrapModule.forRoot()
+    ],
+    schemas: [ NO_ERRORS_SCHEMA ]
+});
+```
+- in angular-cli.json change:
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/learnmore-1.png">
-          </a>
-      </td>
-      <td>
-          <a href="https://mdbootstrap.com/docs/b5/angular/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/cover-bootstrap-5-1.png">
-          </a>
-      </td>
-    </tr>
-     <tr>
-        <td align="center">
-          <p align="center"><b>Start to Code</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
-          </a>
-         </td>
-        <td align="center">
-          <p align="center"><b>Learn Bootstrap 5 | Crash Course for Beginners in 1.5H</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
-          </a>
-         </td>
-      </tr>
-   </tbody>
-</table>
+`"styleExt": "css"` to `"styleExt": "scss"`
 
----
+rename /src/styles.css to styles.scss
 
-# Demo
+- if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
 
-#### Simplicity and ease of use are key features of MDB 5 Angular UI Kit. You need only one minute to install and run it.
+- add below lines to angular-cli.json: 
+```javascript
+"styles": [
+    "../node_modules/font-awesome/scss/font-awesome.scss",
+    "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+    "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+    "./styles.scss"
+],
+"scripts": [
+  "../node_modules/chart.js/dist/Chart.js",
+  "../node_modules/hammerjs/hammer.min.js"
+],
+```
+- install external libs
+```bash
+npm install -–save chart.js@2.5.0 font-awesome hammerjs
+```
+- add following into tsconfig.json file located in *root* folder 
+```javascript
+"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],
+```  
 
-### Buttons
+(note: there is also tsconfig.app.json file inside src folder, however if you want to use it, path should be different)
+```javascript
+"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]
+```
 
-<p>Use MDB custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
+### Run server
+```bash
+ng serve --open
+```
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons.gif">
-  </p>
-</a>
+## Getting started:
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-social-buttons.png">
-  </p>
-</a>
+http://mdbootstrap.com/angular/getting-started/
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons2.png">
-  </p>
-</a>
+**5min Quick Start**: https://mdbootstrap.com/angular/5min-quickstart/
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons-outline.gif">
-  </p>
-</a>
+# Additional tutorials:
 
-### Spinners
+**MDB - Bootstrap tutorial**: https://mdbootstrap.com/bootstrap-tutorial/
 
-<p>Indicate the loading state of a component or page with MDB spinners, built entirely with HTML, CSS, and no JavaScript.</p>
+**MDB - Wordpress tutorial**: https://mdbootstrap.com/wordpress-tutorial/
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-loader.gif">
-  </p>
-</a>
+# PRO version:
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-color-spinners.gif">
-  </p>
-</a>
+**Angular Bootstrap with Material Design PRO (from $79)**: https://mdbootstrap.com/product/angular-bootstrap-pro/  
 
-### Cards
+## Documentation:
+**Huge, detailed documentation avilable online on**: http://mdbootstrap.com/angular/
 
-<p>A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.</p>
+# Highlights:  
+**Bootstrap 4**  
+Up-to-date with the latest standards of Bootstrap 4 and all the best it has to offer. 
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/cards/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-cards.png">
-  </p>
-</a>
+**Angular CLI**  
+A command line interface handling all the tedious tasks for you out of the box.
 
-### Footer
+**Detailed documentation**  
+Intuitive and user-friendly documentation, created with a copy-paste approach.
 
-<p>A footer is an additional navigation component. It can hold links, buttons, company info, copyrights, forms, and many other elements.</p>
+**No jQuery**  
+Writing you code with pure Angular is now quicker, easier, and cleaner. 
 
-<a href="https://mdbootstrap.com/docs/b5/angular/navigation/footer/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-footer.png">
-  </p>
-</a>
+**TypeScript**  
+Superset of JavaScript that compiles to clean JavaScript output.  
 
-### Hover
+**Angular 2, version 5.2.1**  
+Create smarter and faster Angular apps with the latest official Angular release.  
 
-<p>MDB hover effect appears when the user positions the computer cursor over an element without activating it. Hover effects make a website more interactive.</p>
+**Cross-browser compatibility**  
+Works perfectly with Chrome, Firefox, IE, Safari, Opera and Microsoft Edge.  
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-hover.gif">
-  </p>
-</a>
+**Frequent updates**  
+Expect any bugs being fixed in a matter of days.   
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-hover2.png">
-  </p>
-</a>
+**Active community**  
+MDB is broadly used by professionals on multiple levels, who are ready to aid you.
 
-### Notes
+**Modularity**  
+Use TypeScript modules to compile package adjusted yo your needs. 
 
-<p>Notes are small components very helpful in inserting an additional piece of information.</p>
+**Useful helpers**  
+Reduce the frequency of highly repetitive declarations in your CSS.
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/typography/" alt="Bootstrap 5" rel="dofollow">
-  <p align="center">
-    <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-alerts.png">
-  </p>
-</a>
+**Technical support**  
+Every day we help our users with their issues and problems.  
 
-</table>
+**SASS files**  
+Thought-out .scss files come in a compile-ready form.
 
-and more.
+**Flexbox**  
+Full support of Flexbox layout system lets you forget about alignment issues.  
+
+
+A big **thank you to all our users** who are working with us to improve the software. We wouldn't be where we are without you. 
+
+
+# Useful Links:  
+
+Getting started: https://mdbootstrap.com/angular-bootstrap-getting-started/  
+
+5 min quick start: https://mdbootstrap.com/angular/5min-quickstart/  
+
+Material Design + Bootstrap Tutorial: https://mdbootstrap.com/bootstrap-tutorial/  
+
+Material Design + WordPress Tutorial: https://mdbootstrap.com/wordpress-tutorial/  
+
+Freebies: https://mdbootstrap.com/freebies/  
+
+Premium Templates: https://mdbootstrap.com/templates/  
+
+Changelog: https://mdbootstrap.com/angular/changelog/
+
+# Social Media:  
+
+Twitter: https://twitter.com/MDBootstrap  
+
+Facebook: https://www.facebook.com/mdbootstrap  
+
+Pinterest: https://pl.pinterest.com/mdbootstrap 
+
+Google+: https://plus.google.com/u/0/b/107863090883699620484/+Mdbootstrap/posts  
+
+Dribbble: https://dribbble.com/mdbootstrap
+
+LinkedIn: https://www.linkedin.com/company/material-design-for-bootstrap
+
+## Contact:
+office@mdbootstrap.com
