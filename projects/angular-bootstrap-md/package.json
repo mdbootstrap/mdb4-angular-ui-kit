@@ -1,6 +1,7 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "8.1.0",
+  "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
+  "version": "8.1.1",
   "schematics": "./schematics/collection.json",
   "files": [
     "**/*"
