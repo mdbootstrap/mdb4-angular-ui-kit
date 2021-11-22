@@ -158,8 +158,13 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * the tooltip.
    */
   public show(): void {
-    if (this.isOpen || this.tooltipDisabled || this._delayTimeoutId || !this.mdbTooltip) {
+    if (this.isOpen || this.tooltipDisabled || !this.mdbTooltip) {
       return;
+    }
+
+    if (this._delayTimeoutId) {
+      clearTimeout(this._delayTimeoutId);
+      this._delayTimeoutId = undefined;
     }
 
     this._positionService.setOptions({
