@@ -21,7 +21,6 @@
   font-weight: $alert-link-font-weight;
 }
 
-
 // Dismissible alerts
 //
 // Expand the right padding and account for the close button's positioning.
@@ -34,11 +33,11 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 2;
     padding: $alert-padding-y $alert-padding-x;
     color: inherit;
   }
 }
-
 
 // Alternate styles
 //
@@ -46,6 +45,10 @@
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+    @include alert-variant(
+      theme-color-level($color, $alert-bg-level),
+      theme-color-level($color, $alert-border-level),
+      theme-color-level($color, $alert-color-level)
+    );
   }
 }

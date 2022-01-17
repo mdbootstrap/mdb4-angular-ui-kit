@@ -6,13 +6,13 @@
 //
 // Base class takes care of all the key behavioral aspects.
 
-@use "sass:list";
-
 .custom-control {
   position: relative;
+  z-index: 1;
   display: block;
   min-height: $font-size-base * $line-height-base;
   padding-left: $custom-control-gutter + $custom-control-indicator-size;
+  color-adjust: exact; // Keep themed appearance for print
 }
 
 .custom-control-inline {
@@ -38,7 +38,7 @@
   &:focus ~ .custom-control-label::before {
     // the mixin is not used here to make sure there is feedback
     @if $enable-shadows {
-      box-shadow: $input-box-shadow, $input-focus-box-shadow;
+      box-shadow: $input-box-shadow, $custom-control-indicator-focus-box-shadow;
     } @else {
       box-shadow: $custom-control-indicator-focus-box-shadow;
     }
@@ -103,7 +103,7 @@
     width: $custom-control-indicator-size;
     height: $custom-control-indicator-size;
     content: '';
-    background: no-repeat list.slash(50%, $custom-control-indicator-bg-size);
+    background: 50% / #{$custom-control-indicator-bg-size} no-repeat;
   }
 }
 
@@ -135,10 +135,10 @@
 
   .custom-control-input:disabled {
     &:checked ~ .custom-control-label::before {
-      background-color: $custom-control-indicator-checked-disabled-bg;
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
     }
     &:indeterminate ~ .custom-control-label::before {
-      background-color: $custom-control-indicator-checked-disabled-bg;
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
     }
   }
 }
@@ -149,7 +149,7 @@
 
 .custom-radio {
   .custom-control-label::before {
-    // stylelint-disable-next-line property-blacklist
+    // stylelint-disable-next-line property-disallowed-list
     border-radius: $custom-radio-indicator-border-radius;
   }
 
@@ -161,7 +161,7 @@
 
   .custom-control-input:disabled {
     &:checked ~ .custom-control-label::before {
-      background-color: $custom-control-indicator-checked-disabled-bg;
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
     }
   }
 }
@@ -178,7 +178,7 @@
       left: -($custom-switch-width + $custom-control-gutter);
       width: $custom-switch-width;
       pointer-events: all;
-      // stylelint-disable-next-line property-blacklist
+      // stylelint-disable-next-line property-disallowed-list
       border-radius: $custom-switch-indicator-border-radius;
     }
 
@@ -194,7 +194,7 @@
       width: $custom-switch-indicator-size;
       height: $custom-switch-indicator-size;
       background-color: $custom-control-indicator-border-color;
-      // stylelint-disable-next-line property-blacklist
+      // stylelint-disable-next-line property-disallowed-list
       border-radius: $custom-switch-indicator-border-radius;
       @include transition(transform 0.15s ease-in-out, $custom-forms-transition);
     }
@@ -209,7 +209,7 @@
 
   .custom-control-input:disabled {
     &:checked ~ .custom-control-label::before {
-      background-color: $custom-control-indicator-checked-disabled-bg;
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
     }
   }
 }
@@ -242,8 +242,9 @@
     border-color: $custom-select-focus-border-color;
     outline: 0;
     @if $enable-shadows {
-      box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
+      @include box-shadow($custom-select-box-shadow, $custom-select-focus-box-shadow);
     } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
       box-shadow: $custom-select-focus-box-shadow;
     }
 
@@ -316,6 +317,7 @@
   width: 100%;
   height: $custom-file-height;
   margin: 0;
+  overflow: hidden;
   opacity: 0;
 
   &:focus ~ .custom-file-label {
@@ -348,6 +350,7 @@
   z-index: 1;
   height: $custom-file-height;
   padding: $custom-file-padding-y $custom-file-padding-x;
+  overflow: hidden;
   font-family: $custom-file-font-family;
   font-weight: $custom-file-font-weight;
   line-height: $custom-file-line-height;
@@ -389,7 +392,7 @@
   appearance: none;
 
   &:focus {
-    outline: none;
+    outline: 0;
 
     // Pseudo-elements must be split across multiple rulesets to have an effect.
     // No box-shadow() mixin for focus accessibility.

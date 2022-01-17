@@ -93,8 +93,11 @@
   align-items: center; // 2. vertically center contents
   justify-content: center; // 3. horizontally center contents
   width: $carousel-control-width;
+  padding: 0;
   color: $carousel-control-color;
   text-align: center;
+  background: none;
+  border: 0;
   opacity: $carousel-control-opacity;
   @include transition($carousel-control-transition);
 
@@ -125,7 +128,7 @@
   display: inline-block;
   width: $carousel-control-icon-width;
   height: $carousel-control-icon-width;
-  background: no-repeat 50% / 100% 100%;
+  background: 50% / 100% 100% no-repeat;
 }
 .carousel-control-prev-icon {
   background-image: escape-svg($carousel-control-prev-icon-bg);

@@ -266,16 +266,21 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
           this.renderer.setStyle(goToSlide.el.nativeElement, 'display', 'block');
           this.renderer.setStyle(goToSlide.el.nativeElement, 'transition', 'all 600ms');
 
+          goToSlide.directionNext = false;
+          this.animationEnd = true;
+          this.activeSlide = goToIndex;
+
           if (direction === 1) {
             this.activeSlideChange.emit({ direction: 'Next', relatedTarget: this.activeSlide });
           } else if (direction === 2) {
             this.activeSlideChange.emit({ direction: 'Prev', relatedTarget: this.activeSlide });
+          } else {
+            this.activeSlideChange.emit({
+              direction: goToIndex < this.activeSlide ? 'Prev' : 'Next',
+              relatedTarget: this.activeSlide,
+            });
           }
 
-          goToSlide.directionNext = false;
-          this.animationEnd = true;
-          this.activeSlide = goToIndex;
-          this.activeSlideChange.emit({ direction: 'Next', relatedTarget: this.activeSlide });
           this.play();
           this.cdRef.markForCheck();
         }, 0);
