@@ -11,14 +11,13 @@ import { BsDropdownDirective } from './dropdown.directive';
 import { BsDropdownState } from './dropdown.state';
 
 @NgModule({
-  declarations: [
-    BsDropdownMenuDirective,
-    BsDropdownToggleDirective,
-    BsDropdownContainerComponent,
-    BsDropdownDirective,
-  ],
-  exports: [BsDropdownMenuDirective, BsDropdownToggleDirective, BsDropdownDirective],
-  entryComponents: [BsDropdownContainerComponent],
+    declarations: [
+        BsDropdownMenuDirective,
+        BsDropdownToggleDirective,
+        BsDropdownContainerComponent,
+        BsDropdownDirective,
+    ],
+    exports: [BsDropdownMenuDirective, BsDropdownToggleDirective, BsDropdownDirective]
 })
 export class DropdownModule {
   public static forRoot(config?: any): ModuleWithProviders<DropdownModule> {
