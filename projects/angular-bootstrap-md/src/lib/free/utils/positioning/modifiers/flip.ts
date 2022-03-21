@@ -47,7 +47,7 @@ export function flip(data: Data): Data {
 
   const flipOrder = [placement, adaptivePosition];
 
-  /* tslint:disable-next-line: cyclomatic-complexity */
+  /* eslint-disable-next-line complexity */
   flipOrder.forEach((step, index) => {
     if (placement !== step || flipOrder.length === index + 1) {
       return data;

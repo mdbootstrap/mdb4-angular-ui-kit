@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
   Directive,
@@ -15,13 +16,28 @@ import { DOWN_ARROW, UP_ARROW } from '../utils/keyboard-navigation';
 @Directive({
   selector: '[mdbInput]',
 })
-// tslint:disable-next-line:directive-class-suffix
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class MdbInput implements AfterViewChecked, AfterViewInit {
   public elLabel: ElementRef | any = null;
   public elIcon: Element | any = null;
 
-  @Input() focusCheckbox = true;
-  @Input() focusRadio = true;
+  @Input()
+  get focusCheckbox(): boolean {
+    return this._focusCheckbox;
+  }
+  set focusCheckbox(value: BooleanInput) {
+    this._focusCheckbox = coerceBooleanProperty(value);
+  }
+  private _focusCheckbox = false;
+
+  @Input()
+  get focusRadion(): boolean {
+    return this._focusRadio;
+  }
+  set focusRadio(value: BooleanInput) {
+    this._focusRadio = coerceBooleanProperty(value);
+  }
+  private _focusRadio = false;
 
   isBrowser: any = false;
   isClicked = false;

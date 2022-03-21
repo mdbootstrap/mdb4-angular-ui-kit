@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   ElementRef,
@@ -10,22 +11,64 @@ import {
 } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbBtn]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./buttons-module.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbBtnDirective implements OnInit, OnChanges {
   @Input() color = '';
-  @Input() rounded = false;
+
+  @Input()
+  get rounded(): boolean {
+    return this._rounded;
+  }
+  set rounded(value: BooleanInput) {
+    this._rounded = coerceBooleanProperty(value);
+  }
+  private _rounded = false;
+
   @Input() gradient = '';
-  @Input() outline = false;
-  @Input() flat = false;
+
+  @Input()
+  get outline(): boolean {
+    return this._outline;
+  }
+  set outline(value: BooleanInput) {
+    this._outline = coerceBooleanProperty(value);
+  }
+  private _outline = false;
+
+  @Input()
+  get flat(): boolean {
+    return this._flat;
+  }
+  set flat(value: BooleanInput) {
+    this._flat = coerceBooleanProperty(value);
+  }
+  private _flat = false;
+
   @Input() size = '';
-  @Input() block = false;
-  @Input() floating = false;
+
+  @Input()
+  get block(): boolean {
+    return this._block;
+  }
+  set block(value: BooleanInput) {
+    this._block = coerceBooleanProperty(value);
+  }
+  private _block = false;
+
+  @Input()
+  get floating(): boolean {
+    return this._floating;
+  }
+  set floating(value: BooleanInput) {
+    this._floating = coerceBooleanProperty(value);
+  }
+  private _floating = false;
 
   public simpleChange: string;
   public simpleChangeValue: string;

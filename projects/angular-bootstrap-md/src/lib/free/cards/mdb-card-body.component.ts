@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   Input,
@@ -17,7 +18,9 @@ import {
 export class MdbCardBodyComponent implements OnInit {
   @Input() class: string;
 
-  @Input() set cascade(cascade: boolean) {
+  @Input() set cascade(value: BooleanInput) {
+    const cascade = coerceBooleanProperty(value);
+
     if (cascade) {
       this._r.addClass(this._el.nativeElement, 'card-body-cascade');
     }

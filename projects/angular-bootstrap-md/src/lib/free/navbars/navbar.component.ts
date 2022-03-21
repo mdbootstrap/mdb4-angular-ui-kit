@@ -23,6 +23,12 @@ import { fromEvent, Subject } from 'rxjs';
 import { LinksComponent } from './links.component';
 import { DOCUMENT } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 
 @Component({
   selector: 'mdb-navbar',
@@ -34,10 +40,35 @@ import { takeUntil } from 'rxjs/operators';
 export class NavbarComponent implements AfterViewInit, OnInit, AfterContentChecked, OnDestroy {
   @Input() iconBackground: string | string[];
   @Input() SideClass: string;
-  @Input() containerInside = true;
+
+  @Input()
+  get containerInside(): boolean {
+    return this._containerInside;
+  }
+  set containerInside(value: BooleanInput) {
+    this._containerInside = coerceBooleanProperty(value);
+  }
+  private _containerInside = true;
+
   @Input() collapseId = 'navbarCollapse';
-  @Input() scrollSensitivity = 120;
-  @Input() scrollableNavbar = false;
+
+  @Input()
+  get scrollSensitivity(): number {
+    return this._scrollSensitivity;
+  }
+  set scrollSensitivity(value: NumberInput) {
+    this._scrollSensitivity = coerceNumberProperty(value);
+  }
+  private _scrollSensitivity = 120;
+
+  @Input()
+  get scrollableNavbar(): boolean {
+    return this._scrollableNavbar;
+  }
+  set scrollableNavbar(value: BooleanInput) {
+    this._scrollableNavbar = coerceBooleanProperty(value);
+  }
+  private _scrollableNavbar = false;
 
   @Output() shown: EventEmitter<any> = new EventEmitter();
   @Output() hidden: EventEmitter<any> = new EventEmitter();
@@ -76,7 +107,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     this._navbarService
       .getNavbarLinkClicks()
       .pipe(takeUntil(this._destroy$))
-      .subscribe(navbarLinkClicks => {
+      .subscribe((navbarLinkClicks) => {
         this.closeNavbarOnClick(navbarLinkClicks);
       });
   }
@@ -91,7 +122,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   addTogglerIconClasses() {
     if (this.iconBackground) {
       if (Array.isArray(this.iconBackground)) {
-        this.iconBackground.forEach(iconClass => {
+        this.iconBackground.forEach((iconClass) => {
           this.renderer.addClass(this.toggler.nativeElement, iconClass);
         });
       } else {
@@ -122,7 +153,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   ngAfterViewInit() {
     if (!this.containerInside) {
       const childrens = Array.from(this.container.nativeElement.children);
-      childrens.forEach(child => {
+      childrens.forEach((child) => {
         this.renderer.appendChild(this.navbar.nativeElement, child);
         this.container.nativeElement.remove();
       });

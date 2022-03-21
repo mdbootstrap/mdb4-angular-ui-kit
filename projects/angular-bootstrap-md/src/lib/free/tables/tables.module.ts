@@ -8,21 +8,22 @@ import { MdbTableService } from './services/mdb-table.service';
 import { MdbTablePaginationComponent } from './components/mdb-table-pagination.component';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [
-        MdbTablePaginationComponent,
-        MdbTableRowDirective,
-        MdbTableScrollDirective,
-        MdbTableSortDirective,
-        MdbTableDirective,
-    ],
-    exports: [
-        MdbTablePaginationComponent,
-        MdbTableRowDirective,
-        MdbTableScrollDirective,
-        MdbTableSortDirective,
-        MdbTableDirective,
-    ],
-    providers: [MdbTableService]
+  imports: [CommonModule],
+  declarations: [
+    MdbTablePaginationComponent,
+    MdbTableRowDirective,
+    MdbTableScrollDirective,
+    MdbTableSortDirective,
+    MdbTableDirective,
+  ],
+  exports: [
+    MdbTablePaginationComponent,
+    MdbTableRowDirective,
+    MdbTableScrollDirective,
+    MdbTableSortDirective,
+    MdbTableDirective,
+  ],
+  entryComponents: [MdbTablePaginationComponent],
+  providers: [MdbTableService],
 })
 export class TableModule {}

@@ -20,6 +20,7 @@ import {
   throttleTime,
   takeUntil,
 } from 'rxjs/operators';
+import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 
 enum Direction {
   Up = 'Up',
@@ -31,7 +32,15 @@ enum Direction {
   exportAs: 'mdbStickyHeader',
 })
 export class StickyHeaderDirective implements AfterViewInit, OnDestroy {
-  @Input() animationDuration = 200;
+  @Input()
+  get animationDuration(): number {
+    return this._animationDuration;
+  }
+  set animationDuration(value: NumberInput) {
+    this._animationDuration = coerceNumberProperty(value);
+  }
+  private _animationDuration = 200;
+
   @Output() transitionEnd: EventEmitter<{ state: string }> = new EventEmitter<{ state: string }>();
 
   private _destroy$: Subject<void> = new Subject();
@@ -51,8 +60,8 @@ export class StickyHeaderDirective implements AfterViewInit, OnDestroy {
       share()
     );
 
-    this.scrollUp$ = scroll$.pipe(filter(direction => direction === Direction.Up));
-    this.scrollDown$ = scroll$.pipe(filter(direction => direction === Direction.Down));
+    this.scrollUp$ = scroll$.pipe(filter((direction) => direction === Direction.Up));
+    this.scrollDown$ = scroll$.pipe(filter((direction) => direction === Direction.Down));
 
     this._renderer.setStyle(this._el.nativeElement, 'position', 'fixed');
     this._renderer.setStyle(this._el.nativeElement, 'top', '0');
@@ -60,34 +69,24 @@ export class StickyHeaderDirective implements AfterViewInit, OnDestroy {
     this._renderer.setStyle(this._el.nativeElement, 'z-index', '1030');
 
     setTimeout(() => {
-      this.scrollUp$
-        .pipe(
-          skip(0),
-          takeUntil(this._destroy$)
-        )
-        .subscribe(() => {
-          this._renderer.setStyle(
-            this._el.nativeElement,
-            'transition',
-            `all ${this.animationDuration}ms ease-in`
-          );
-          this._renderer.setStyle(this._el.nativeElement, 'transform', 'translateY(0%)');
-          this.transitionEnd.emit({ state: 'Visible' });
-        });
-      this.scrollDown$
-        .pipe(
-          skip(0),
-          takeUntil(this._destroy$)
-        )
-        .subscribe(() => {
-          this._renderer.setStyle(
-            this._el.nativeElement,
-            'transition',
-            `all ${this.animationDuration}ms ease-in`
-          );
-          this._renderer.setStyle(this._el.nativeElement, 'transform', 'translateY(-100%)');
-          this.transitionEnd.emit({ state: 'Hidden' });
-        });
+      this.scrollUp$.pipe(skip(0), takeUntil(this._destroy$)).subscribe(() => {
+        this._renderer.setStyle(
+          this._el.nativeElement,
+          'transition',
+          `all ${this.animationDuration}ms ease-in`
+        );
+        this._renderer.setStyle(this._el.nativeElement, 'transform', 'translateY(0%)');
+        this.transitionEnd.emit({ state: 'Visible' });
+      });
+      this.scrollDown$.pipe(skip(0), takeUntil(this._destroy$)).subscribe(() => {
+        this._renderer.setStyle(
+          this._el.nativeElement,
+          'transition',
+          `all ${this.animationDuration}ms ease-in`
+        );
+        this._renderer.setStyle(this._el.nativeElement, 'transform', 'translateY(-100%)');
+        this.transitionEnd.emit({ state: 'Hidden' });
+      });
     }, 0);
   }
 

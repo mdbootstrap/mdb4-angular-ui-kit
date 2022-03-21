@@ -16,6 +16,7 @@ import { ComponentLoaderFactory } from '../utils/component-loader/component-load
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
 import { PopoverContainerComponent } from './popover-container.component';
 import { PositioningService } from '../utils/positioning/positioning.service';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
@@ -57,27 +58,52 @@ export class PopoverDirective implements OnInit, OnDestroy {
     return this._popover.isShown;
   }
 
-  public set isOpen(value: boolean) {
-    if (value) {
+  public set isOpen(value: BooleanInput) {
+    const isOpen = coerceBooleanProperty(value);
+
+    if (isOpen) {
       this.show();
     } else {
       this.hide();
     }
   }
 
-  @Input() dynamicPosition = true;
-  @Input() outsideClick = false;
-  @Input() popoverDisabled = false;
+  @Input()
+  get dynamicPosition(): boolean {
+    return this._dynamicPosition;
+  }
+  set dynamicPosition(value: BooleanInput) {
+    this._dynamicPosition = coerceBooleanProperty(value);
+  }
+  private _dynamicPosition = true;
+
+  @Input()
+  get outsideClick(): boolean {
+    return this._outsideClick;
+  }
+  set outsideClick(value: BooleanInput) {
+    this._outsideClick = coerceBooleanProperty(value);
+  }
+  private _outsideClick = false;
+
+  @Input()
+  get popoverDisabled(): boolean {
+    return this._popoverDisabled;
+  }
+  set popoverDisabled(value: BooleanInput) {
+    this._popoverDisabled = coerceBooleanProperty(value);
+  }
+  private _popoverDisabled = false;
   /**
    * Emits an event when the popover is shown
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onShown: EventEmitter<any>;
   @Output() public shown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onHidden: EventEmitter<any>;
   @Output() public hidden: EventEmitter<any>;
 

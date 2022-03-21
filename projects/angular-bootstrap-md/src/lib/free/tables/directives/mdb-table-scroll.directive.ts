@@ -1,10 +1,19 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, ElementRef, Renderer2, OnInit, Input } from '@angular/core';
 
 @Directive({
   selector: '[mdbTableScroll]',
 })
 export class MdbTableScrollDirective implements OnInit {
-  @Input() scrollY = false;
+  @Input()
+  get scrollY(): boolean {
+    return this._scrollY;
+  }
+  set scrollY(value: BooleanInput) {
+    this._scrollY = coerceBooleanProperty(value);
+  }
+  private _scrollY = false;
+
   @Input()
   get maxHeight(): number | string | null {
     return this._maxHeight;
@@ -17,7 +26,15 @@ export class MdbTableScrollDirective implements OnInit {
     }
   }
 
-  @Input() scrollX = false;
+  @Input()
+  get scrollX(): boolean {
+    return this._scrollX;
+  }
+  set scrollX(value: BooleanInput) {
+    this._scrollX = coerceBooleanProperty(value);
+  }
+  private _scrollX = false;
+
   @Input()
   get maxWidth(): number | string | null {
     return this._maxWidth;

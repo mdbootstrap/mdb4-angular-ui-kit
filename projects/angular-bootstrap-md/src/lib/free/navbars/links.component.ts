@@ -12,7 +12,7 @@ import {
 import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'links',
   template: `
     <ng-content></ng-content>

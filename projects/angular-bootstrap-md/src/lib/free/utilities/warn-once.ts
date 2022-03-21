@@ -8,6 +8,6 @@ export function warnOnce(msg: string): void {
   }
 
   _messagesHash[msg] = true;
-  /*tslint:disable-next-line*/
+  /* eslint-disable-next-line */
   console.warn(msg);
 }

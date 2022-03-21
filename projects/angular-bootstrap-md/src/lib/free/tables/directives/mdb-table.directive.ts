@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   Component,
@@ -11,44 +12,96 @@ import {
 import { Observable, Subject } from 'rxjs';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbTable]',
   exportAs: 'mdbTable',
   template: '<ng-content></ng-content>',
   styleUrls: ['./../tables-module.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbTableDirective implements OnInit, AfterViewInit {
   @Input()
   @HostBinding('class.table-striped')
-  striped: boolean;
+  get striped(): boolean {
+    return this._striped;
+  }
+  set striped(value: BooleanInput) {
+    this._striped = coerceBooleanProperty(value);
+  }
+  private _striped = false;
 
   @Input()
   @HostBinding('class.table-bordered')
-  bordered: boolean;
+  get bordered(): boolean {
+    return this._bordered;
+  }
+  set bordered(value: BooleanInput) {
+    this._bordered = coerceBooleanProperty(value);
+  }
+  private _bordered = false;
 
   @Input()
   @HostBinding('class.table-borderless')
-  borderless: boolean;
+  get borderless(): boolean {
+    return this._borderless;
+  }
+  set borderless(value: BooleanInput) {
+    this._borderless = coerceBooleanProperty(value);
+  }
+  private _borderless = false;
 
   @Input()
   @HostBinding('class.table-hover')
-  hover: boolean;
+  get hover(): boolean {
+    return this._hover;
+  }
+  set hover(value: BooleanInput) {
+    this._hover = coerceBooleanProperty(value);
+  }
+  private _hover = false;
 
   @Input()
   @HostBinding('class.table-sm')
-  small: boolean;
+  get small(): boolean {
+    return this._small;
+  }
+  set small(value: BooleanInput) {
+    this._small = coerceBooleanProperty(value);
+  }
+  private _small = false;
 
   @Input()
   @HostBinding('class.table-responsive')
-  responsive: boolean;
+  get responsive(): boolean {
+    return this._responsive;
+  }
+  set responsive(value: BooleanInput) {
+    this._responsive = coerceBooleanProperty(value);
+  }
+  private _responsive = false;
 
-  @Input() stickyHeader = false;
+  @Input()
+  get stickyHeader(): boolean {
+    return this._stickyHeader;
+  }
+  set stickyHeader(value: BooleanInput) {
+    this._stickyHeader = coerceBooleanProperty(value);
+  }
+  private _stickyHeader = false;
+
   @Input() stickyHeaderBgColor = '#f2f2f2';
   @Input() stickyHeaderTextColor = '#000000';
 
-  @Input() stickyFooter = false;
+  @Input()
+  get stickyFooter(): boolean {
+    return this._stickyFooter;
+  }
+  set stickyFooter(value: BooleanInput) {
+    this._stickyFooter = coerceBooleanProperty(value);
+  }
+  private _stickyFooter = false;
+
   @Input() stickyFooterBgColor = '#f2f2f2';
   @Input() stickyFooterTextColor = '#000000';
 
@@ -98,9 +151,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
         if (obj[key]) {
           // Fix(tableSearch): table search will now able to filter through nested data
 
-          return JSON.stringify(obj)
-            .toLowerCase()
-            .includes(searchKey) as any;
+          return JSON.stringify(obj).toLowerCase().includes(searchKey) as any;
         }
       });
     });

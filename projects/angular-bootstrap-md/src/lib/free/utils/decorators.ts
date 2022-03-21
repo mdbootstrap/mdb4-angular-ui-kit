@@ -1,4 +1,4 @@
-/*tslint:disable:no-invalid-this */
+/* eslint-disable no-invalid-this */
 export function OnChange(): any {
   const sufix = 'Change';
   return function OnChangeHandler(target: any, propertyKey: string): void {
@@ -15,4 +15,4 @@ export function OnChange(): any {
     });
   };
 }
-/* tslint:enable */
+/* eslint-enable */

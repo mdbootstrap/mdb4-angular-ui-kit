@@ -49,7 +49,7 @@ export interface PositioningOptions {
 @Injectable()
 export class PositioningService {
   options: Options;
-  private update$$ = new Subject<null>();
+  private update$$ = new Subject<void>();
   private positionElements = new Map();
 
   constructor(
@@ -62,7 +62,6 @@ export class PositioningService {
         merge(
           fromEvent(window, 'scroll'),
           fromEvent(window, 'resize'),
-          // tslint:disable-next-line: deprecation
           of(0, animationFrameScheduler),
           this.update$$
         ).subscribe(() => {

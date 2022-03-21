@@ -61,7 +61,7 @@ $custom-mdb-file-text: (
   zh: '選擇',
   de: 'Wählen',
   ru: 'выбирать',
-);
+) !default;
 
 // Blockquote
 $blockquote-padding-y: 0.5rem !default;

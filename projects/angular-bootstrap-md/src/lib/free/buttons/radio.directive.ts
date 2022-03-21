@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   ElementRef,
@@ -12,7 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line: no-use-before-declare
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => ButtonRadioDirective),
   multi: true,
 };
@@ -30,7 +31,14 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   /** Radio button value, will be set to `ngModel` */
   @Input() public mdbRadio: any;
   /** If `true` — radio button can be unchecked */
-  @Input() public uncheckable: boolean;
+  @Input()
+  get uncheckable(): boolean {
+    return this._uncheckable;
+  }
+  set uncheckable(value: BooleanInput) {
+    this._uncheckable = coerceBooleanProperty(value);
+  }
+  private _uncheckable = false;
   /** Current value of radio component or group */
   @Input() public value: any;
 
@@ -52,7 +60,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       this.el.nativeElement.parentElement.childNodes.forEach((element: any) => {
         this.radioElementsArray.push(element);
       });
-      this.radioElementsArray.forEach(element => {
+      this.radioElementsArray.forEach((element) => {
         this.renderer.removeClass(element, 'active');
       });
       this.renderer.addClass(event.target, 'active');

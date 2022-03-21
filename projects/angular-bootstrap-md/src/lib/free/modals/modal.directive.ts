@@ -29,14 +29,14 @@ const BACKDROP_TRANSITION_DURATION = 150;
 
 /** Mark any code with directive to show it's content in modal */
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbModal]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./modals-module.scss'],
   encapsulation: ViewEncapsulation.None,
   exportAs: 'mdb-modal, mdbModal',
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
   /** allows to set modal configuration via element property */
   @Input()
@@ -49,19 +49,19 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   /** This event fires immediately when the `show` instance method is called. */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public open: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public opened: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired immediately when the hide instance method has been called. */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public close: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public closed: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 

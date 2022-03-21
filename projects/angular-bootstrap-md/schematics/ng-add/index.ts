@@ -6,7 +6,7 @@ import { addPackageToPackageJson } from './package';
 // Just return the tree
 export function ngAdd(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const angularDependencyVersion = '^9.0.0';
+    const angularDependencyVersion = '^13.0.0';
 
     addPackageToPackageJson(tree, '@angular/cdk', angularDependencyVersion);
     addPackageToPackageJson(tree, '@angular/forms', angularDependencyVersion);
@@ -15,7 +15,7 @@ export function ngAdd(options: Schema): Rule {
     if (options.externalDependencies) {
       addPackageToPackageJson(tree, 'chart.js', '^2.7.2');
       addPackageToPackageJson(tree, '@types/chart.js', '^2.7.40');
-      addPackageToPackageJson(tree, '@fortawesome/fontawesome-free', '~5.6.3');
+      addPackageToPackageJson(tree, '@fortawesome/fontawesome-free', '~6.0.0');
       addPackageToPackageJson(tree, 'hammerjs', '~2.0.8');
       addPackageToPackageJson(tree, 'animate.css', '~3.7.2');
     }

@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,13 +19,32 @@ import {
 })
 export class MdbCardComponent implements OnInit {
   @Input() class: string;
-  @Input() cascade: boolean;
-  @Input() wider: boolean;
+
+  @Input()
+  get cascade(): boolean {
+    return this._cascade;
+  }
+  set cascade(value: BooleanInput) {
+    this._cascade = coerceBooleanProperty(value);
+  }
+  private _cascade = false;
+
+  @Input()
+  get wider(): boolean {
+    return this._wider;
+  }
+  set wider(value: BooleanInput) {
+    this._wider = coerceBooleanProperty(value);
+  }
+  private _wider = false;
+
   @Input() imageBackground: string;
 
   @ViewChild('card', { static: true }) card: ElementRef;
 
-  @Input() set narrower(narrower: boolean) {
+  @Input() set narrower(value: BooleanInput) {
+    const narrower = coerceBooleanProperty(value);
+
     if (narrower) {
       this._r.addClass(this._el.nativeElement, 'narrower');
     } else if (!narrower && this._el.nativeElement.classList.contains('narrower')) {
@@ -32,7 +52,9 @@ export class MdbCardComponent implements OnInit {
     }
   }
 
-  @Input() set reverse(reverse: boolean) {
+  @Input() set reverse(value: BooleanInput) {
+    const reverse = coerceBooleanProperty(value);
+
     if (reverse) {
       this._r.addClass(this._el.nativeElement, 'reverse');
     } else if (!reverse && this._el.nativeElement.classList.contains('reserse')) {
@@ -40,7 +62,9 @@ export class MdbCardComponent implements OnInit {
     }
   }
 
-  @Input() set dark(dark: boolean) {
+  @Input() set dark(value: BooleanInput) {
+    const dark = coerceBooleanProperty(value);
+
     if (dark) {
       this._r.addClass(this._el.nativeElement, 'card-dark');
     } else if (!dark && this._el.nativeElement.classList.contains('card-dark')) {

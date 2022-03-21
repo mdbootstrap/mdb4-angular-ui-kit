@@ -5,7 +5,7 @@
 import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
 
-/* tslint:disable-next-line: no-any */
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type BsEventCallback = (event?: any) => boolean | void;
 
 export interface ListenOptions {
@@ -24,7 +24,7 @@ const DEFAULT_ALIASES = {
   focus: ['focusin', 'focusout']
 };
 
-/* tslint:disable-next-line: no-any */
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
@@ -57,14 +57,14 @@ export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES):
 }
 
 export function listenToTriggers(renderer: Renderer2,
-                                 /* tslint:disable-next-line: no-any */
+                                 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
                                  target: any,
                                  triggers: string,
                                  showFn: BsEventCallback,
                                  hideFn: BsEventCallback,
                                  toggleFn: BsEventCallback): Function {
   const parsedTriggers = parseTriggers(triggers);
-  /* tslint:disable-next-line: no-any */
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   const listeners: any[] = [];
 
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
@@ -99,7 +99,7 @@ export function listenToTriggersV2(renderer: Renderer2,
   }
 
   // all listeners
-  /* tslint:disable-next-line: no-any */
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   const listeners: any[] = [];
 
   // lazy listeners registration
@@ -138,7 +138,7 @@ export function registerOutsideClick(renderer: Renderer2,
     return Function.prototype;
   }
 
-  /* tslint:disable-next-line: no-any */
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   return renderer.listen('document', 'click', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
       return undefined;
