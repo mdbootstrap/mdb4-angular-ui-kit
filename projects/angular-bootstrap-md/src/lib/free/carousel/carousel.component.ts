@@ -24,6 +24,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { LEFT_ARROW, RIGHT_ARROW } from '../utils/keyboard-navigation';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 
 export enum Direction {
   UNKNOWN,
@@ -60,22 +66,71 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   protected carouselIndicators: any;
 
   isBrowser: any = false;
-  @Input() public noWrap: boolean;
-  @Input() public noPause: boolean;
 
-  @Input() public isControls = true;
-  @Input() public keyboard: boolean;
+  @Input()
+  get noWrap(): boolean {
+    return this._noWrap;
+  }
+  set noWrap(value: BooleanInput) {
+    this._noWrap = coerceBooleanProperty(value);
+  }
+  private _noWrap = false;
 
-  @Input() public class: String = '';
-  @Input() public type: String = '';
-  @Input() public animation: String = '';
-  @Input() activeSlideIndex: number;
-  @Input() allowSwipe = true;
+  @Input()
+  get noPause(): boolean {
+    return this._noPause;
+  }
+  set noPause(value: BooleanInput) {
+    this._noPause = coerceBooleanProperty(value);
+  }
+  private _noPause = false;
+
+  @Input()
+  get isControls(): boolean {
+    return this._isControls;
+  }
+  set isControls(value: BooleanInput) {
+    this._isControls = coerceBooleanProperty(value);
+  }
+  private _isControls = true;
+
+  @Input()
+  get keyboard(): boolean {
+    return this._keyboard;
+  }
+  set keyboard(value: BooleanInput) {
+    this._keyboard = coerceBooleanProperty(value);
+  }
+  private _keyboard = false;
+
+  @Input() public class: string = '';
+  @Input() public type: string = '';
+  @Input() public animation: string = '';
+
+  @Input()
+  get activeSlideIndex(): number {
+    return this._activeSlideIndex;
+  }
+  set activeSlideIndex(value: NumberInput) {
+    this._activeSlideIndex = coerceNumberProperty(value);
+  }
+  private _activeSlideIndex: number;
+
+  @Input()
+  get allowSwipe(): boolean {
+    return this._allowSwipe;
+  }
+  set allowSwipe(value: BooleanInput) {
+    this._allowSwipe = coerceBooleanProperty(value);
+  }
+  private _allowSwipe = true;
 
   @Output() public activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
 
   @Input()
-  public set activeSlide(index: number) {
+  public set activeSlide(value: NumberInput) {
+    const index = coerceNumberProperty(value);
+
     if (this._slidesList && index !== this._currentActiveSlide) {
       this._select(index);
     }
@@ -110,8 +165,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     return this._interval;
   }
 
-  public set interval(value: number) {
-    this._interval = value;
+  public set interval(value: NumberInput) {
+    this._interval = coerceNumberProperty(value);
     this.restartTimer();
   }
 
@@ -403,7 +458,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   private findNextSlideIndex(direction: Direction, force: boolean): any {
     let nextSlideIndex = 0;
 
-    if (!force && (this.isLast(this.activeSlide) && direction !== Direction.PREV && this.noWrap)) {
+    if (!force && this.isLast(this.activeSlide) && direction !== Direction.PREV && this.noWrap) {
       return void 0;
     }
 
@@ -500,12 +555,10 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
   @HostListener('keyup', ['$event']) keyboardControl(event: any) {
     if (this.keyboard) {
-      // tslint:disable-next-line: deprecation
       if (event.keyCode === RIGHT_ARROW) {
         this.nextSlide();
       }
 
-      // tslint:disable-next-line: deprecation
       if (event.keyCode === LEFT_ARROW) {
         this.previousSlide();
       }

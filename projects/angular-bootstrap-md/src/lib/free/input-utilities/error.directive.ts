@@ -18,7 +18,7 @@ let defaultIdNumber = 0;
   styleUrls: ['./input-utilities-module.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbErrorDirective implements OnInit, OnDestroy {
   prefix: HTMLElement;
   @Input() id = `mdb-error-${defaultIdNumber++}`;

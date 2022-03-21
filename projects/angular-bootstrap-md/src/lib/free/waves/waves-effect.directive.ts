@@ -28,14 +28,12 @@ export class WavesDirective {
 
       const scale = 'scale(' + (button.clientWidth / 100) * 3 + ') translate(0,0)';
 
-      // tslint:disable-next-line: deprecation
       tmp.style.webkitTransform = scale;
       tmp.style.transform = scale;
       tmp.style.opacity = '1';
 
       const duration = 750;
 
-      // tslint:disable-next-line: deprecation
       tmp.style.webkitTransitionDuration = duration + 'ms';
       tmp.style.transitionDuration = duration + 'ms';
 

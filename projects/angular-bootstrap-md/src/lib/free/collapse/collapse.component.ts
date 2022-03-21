@@ -13,9 +13,10 @@ import {
 } from '@angular/core';
 import { state, style, trigger, transition, animate } from '@angular/animations';
 import { FixedButtonCaptionDirective } from '../buttons/fixed-caption.directive';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbCollapse]',
   exportAs: 'bs-collapse',
   template: '<ng-content></ng-content>',
@@ -30,7 +31,15 @@ import { FixedButtonCaptionDirective } from '../buttons/fixed-caption.directive'
 })
 export class CollapseComponent implements OnInit {
   @ContentChildren(FixedButtonCaptionDirective) captions: QueryList<FixedButtonCaptionDirective>;
-  @Input() isCollapsed = true;
+
+  @Input()
+  get isCollapsed(): boolean {
+    return this._isCollapsed;
+  }
+  set isCollapsed(value: BooleanInput) {
+    this._isCollapsed = coerceBooleanProperty(value);
+  }
+  private _isCollapsed = true;
 
   @Output() showBsCollapse: EventEmitter<any> = new EventEmitter();
   @Output() shownBsCollapse: EventEmitter<any> = new EventEmitter();

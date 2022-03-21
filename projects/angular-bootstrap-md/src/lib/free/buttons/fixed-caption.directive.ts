@@ -3,7 +3,7 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 @Directive({ selector: '[mdbFixedCaption]' })
 export class FixedButtonCaptionDirective implements OnInit {
   @Input('mdbFixedCaption') caption: string;
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('collapseButton') collapseButtonActivator: any;
   private paragraphEl: any;
   constructor(private renderer: Renderer2, private el: ElementRef) {}

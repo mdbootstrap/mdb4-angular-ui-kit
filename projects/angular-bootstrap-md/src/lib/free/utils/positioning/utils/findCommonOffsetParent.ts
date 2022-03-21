@@ -12,7 +12,7 @@ export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElem
   }
 
   // Here we make sure to give as "start" the element that comes first in the DOM
-  /* tslint:disable-next-line: no-bitwise */
+  /* eslint-disable-next-line no-bitwise */
   const order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
 
   const start = order ? element1 : element2;

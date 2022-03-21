@@ -1,4 +1,10 @@
 import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
+import {
   Component,
   EventEmitter,
   forwardRef,
@@ -9,7 +15,6 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
@@ -19,7 +24,7 @@ import { take } from 'rxjs/operators';
 
 export const CHECKBOX_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line: no-use-before-declare
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => CheckboxComponent),
   multi: true,
 };
@@ -34,8 +39,6 @@ export class MdbCheckboxChange {
 @Component({
   selector: 'mdb-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['checkbox-module.scss'],
-  encapsulation: ViewEncapsulation.None,
   providers: [CHECKBOX_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -45,20 +48,95 @@ export class CheckboxComponent implements OnInit, OnChanges {
   private defaultId = `mdb-checkbox-${++defaultIdNumber}`;
 
   @Input() class: string;
-  @Input() id: string = this.defaultId;
-  @Input() required: boolean;
+  @Input() checkboxId: string = this.defaultId;
+
+  @Input()
+  get required(): boolean {
+    return this._required;
+  }
+  set required(value: BooleanInput) {
+    this._required = coerceBooleanProperty(value);
+  }
+  private _required = false;
+
   @Input() name: string;
   @Input() value: string;
-  @Input() checked = false;
-  @Input() filledIn = false;
-  @Input() indeterminate = false;
-  @Input() disabled: boolean;
-  @Input() rounded = false;
-  @Input() checkboxPosition = 'left';
-  @Input() default = false;
-  @Input() inline = false;
-  @Input() tabIndex: number;
 
+  @Input()
+  get checked(): boolean {
+    return this._checked;
+  }
+  set checked(value: BooleanInput) {
+    this._checked = coerceBooleanProperty(value);
+  }
+  private _checked = false;
+
+  @Input()
+  get filledIn(): boolean {
+    return this._filledIn;
+  }
+  set filledIn(value: BooleanInput) {
+    this._filledIn = coerceBooleanProperty(value);
+  }
+  private _filledIn = false;
+
+  @Input()
+  get indeterminate(): boolean {
+    return this._indeterminate;
+  }
+  set indeterminate(value: BooleanInput) {
+    this._indeterminate = coerceBooleanProperty(value);
+  }
+  private _indeterminate = false;
+
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: BooleanInput) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled = false;
+
+  @Input()
+  get rounded(): boolean {
+    return this._rounded;
+  }
+  set rounded(value: BooleanInput) {
+    this._rounded = coerceBooleanProperty(value);
+  }
+  private _rounded = false;
+
+  @Input() checkboxPosition = 'left';
+
+  @Input()
+  get default(): boolean {
+    return this._default;
+  }
+  set default(value: BooleanInput) {
+    this._default = coerceBooleanProperty(value);
+  }
+  private _default = false;
+
+  @Input()
+  get inline(): boolean {
+    return this._inline;
+  }
+  set inline(value: BooleanInput) {
+    this._inline = coerceBooleanProperty(value);
+  }
+  private _inline = false;
+
+  @Input()
+  get tabIndex(): number {
+    return this._tabIndex;
+  }
+  set tabIndex(value: NumberInput) {
+    this._tabIndex = coerceNumberProperty(value);
+  }
+  private _tabIndex: number;
+
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() change: EventEmitter<MdbCheckboxChange> = new EventEmitter<MdbCheckboxChange>();
 
   private checkboxClicked = new Subject<boolean>();
@@ -117,7 +195,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
   }
 
   onBlur() {
-    this.checkboxClicked.pipe(take(1)).subscribe(val => {
+    this.checkboxClicked.pipe(take(1)).subscribe((val) => {
       if (!val) {
         this.onTouched();
       }

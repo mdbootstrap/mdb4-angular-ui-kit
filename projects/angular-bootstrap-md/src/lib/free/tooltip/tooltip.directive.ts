@@ -23,6 +23,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { PositioningService } from '../utils/positioning/positioning.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {
+  BooleanInput,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  NumberInput,
+} from '@angular/cdk/coercion';
 
 @Directive({
   selector: '[mdbTooltip]',
@@ -61,8 +67,10 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     return this._tooltip.isShown;
   }
 
-  public set isOpen(value: boolean) {
-    if (value) {
+  public set isOpen(value: BooleanInput) {
+    const isOpen = coerceBooleanProperty(value);
+
+    if (isOpen) {
       this.show();
     } else {
       this.hide();
@@ -72,26 +80,56 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Allows to disable tooltip
    */
-  @Input() public tooltipDisabled: boolean;
+  @Input()
+  get tooltipDisabled(): boolean {
+    return this._tooltipDisabled;
+  }
+  set tooltipDisabled(value: BooleanInput) {
+    this._tooltipDisabled = coerceBooleanProperty(value);
+  }
+  private _tooltipDisabled = false;
 
-  @Input() dynamicPosition = true;
+  @Input()
+  get dynamicPosition(): boolean {
+    return this._dynamicPosition;
+  }
+  set dynamicPosition(value: BooleanInput) {
+    this._dynamicPosition = coerceBooleanProperty(value);
+  }
+  private _dynamicPosition = true;
 
   /**
    * Emits an event when the tooltip is shown
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onShown: EventEmitter<any>;
   @Output() public shown: EventEmitter<any>;
   /**
    * Emits an event when the tooltip is hidden
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() public onHidden: EventEmitter<any>;
   @Output() public hidden: EventEmitter<any>;
 
-  @Input() public delay = 0;
+  @Input()
+  get delay(): number {
+    return this._delay;
+  }
+  set delay(value: NumberInput) {
+    this._delay = coerceNumberProperty(value);
+  }
+  private _delay = 0;
+
   @Input() public customHeight: string;
-  @Input() public fadeDuration = 150;
+
+  @Input()
+  get fadeDuration(): number {
+    return this._fadeDuration;
+  }
+  set fadeDuration(value: NumberInput) {
+    this._fadeDuration = coerceNumberProperty(value);
+  }
+  private _fadeDuration = 150;
 
   private _destroy$: Subject<void> = new Subject();
 

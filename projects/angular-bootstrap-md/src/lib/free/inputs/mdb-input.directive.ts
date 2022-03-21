@@ -379,7 +379,7 @@ export class MdbInputDirective
         if (this.elIcon) {
           this._renderer.removeClass(this.elIcon, 'active');
         }
-        // tslint:disable-next-line:max-line-length
+        // eslint-disable-next-line max-len
       }
       if (
         (value === '' && this.isClicked) ||

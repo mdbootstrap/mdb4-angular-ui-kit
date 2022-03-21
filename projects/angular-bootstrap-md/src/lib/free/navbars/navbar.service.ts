@@ -3,7 +3,7 @@ import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class NavbarService {
-  private navbarLinkClicks = new Subject<any>();
+  private navbarLinkClicks = new Subject<void>();
 
   getNavbarLinkClicks(): Observable<any> {
     return this.navbarLinkClicks.asObservable();

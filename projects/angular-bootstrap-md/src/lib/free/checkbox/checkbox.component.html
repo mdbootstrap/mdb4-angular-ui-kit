@@ -12,7 +12,7 @@
       'filled-in': filledIn || rounded,
       'custom-control-input': default,
       'form-check-input': !default }"
-    [id]="id"
+    [id]="checkboxId"
     [checked]="checked"
     [disabled]="disabled"
     [required]="required"
@@ -30,7 +30,7 @@
       'label-before': checkboxPosition === 'right',
       'checkbox-rounded': rounded,
       'disabled': disabled }"
-    [attr.for]="id">
+    [attr.for]="checkboxId">
     <ng-content></ng-content>
   </label>
 </div>

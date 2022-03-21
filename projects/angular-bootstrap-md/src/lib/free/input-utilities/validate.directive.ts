@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
@@ -8,32 +9,40 @@ export class MdbValidateDirective implements OnInit {
   private _validateSuccess = true;
   private _validateError = true;
 
-  @Input() mdbValidate: boolean;
   @Input()
-  get validate() {
+  get mdbValidate(): boolean {
+    return this._mdbValidate;
+  }
+  set mdbValidate(value: BooleanInput) {
+    this._mdbValidate = coerceBooleanProperty(value);
+  }
+  private _mdbValidate = false;
+
+  @Input()
+  get validate(): boolean {
     return this._validate;
   }
-  set validate(value: boolean) {
-    this._validate = value;
+  set validate(value: BooleanInput) {
+    this._validate = coerceBooleanProperty(value);
     this.updateErrorClass();
     this.updateSuccessClass();
   }
 
   @Input()
-  get validateSuccess() {
+  get validateSuccess(): boolean {
     return this._validateSuccess;
   }
-  set validateSuccess(value: boolean) {
-    this._validateSuccess = value;
+  set validateSuccess(value: BooleanInput) {
+    this._validateSuccess = coerceBooleanProperty(value);
     this.updateSuccessClass();
   }
 
   @Input()
-  get validateError() {
+  get validateError(): boolean {
     return this._validateError;
   }
-  set validateError(value: boolean) {
-    this._validateError = value;
+  set validateError(value: BooleanInput) {
+    this._validateError = coerceBooleanProperty(value);
     this.updateErrorClass();
     this.updateSuccessClass();
   }

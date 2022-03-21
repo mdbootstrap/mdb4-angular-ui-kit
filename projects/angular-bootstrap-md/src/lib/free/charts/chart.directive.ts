@@ -15,6 +15,7 @@ import { Colors } from './colors.interface';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 declare var Chart: any;
 
@@ -41,7 +42,15 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   @Input() public options: any = { legend: { display: false } };
   @Input() public chartType: string;
   @Input() public colors: Array<any>;
-  @Input() public legend = false;
+
+  @Input()
+  get legend(): boolean {
+    return this._legend;
+  }
+  set legend(value: BooleanInput) {
+    this._legend = coerceBooleanProperty(value);
+  }
+  private _legend = false;
 
   @Output() public chartClick: EventEmitter<any> = new EventEmitter();
   @Output() public chartHover: EventEmitter<any> = new EventEmitter();
@@ -159,7 +168,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   private getDatasets(): any {
     let datasets: any = void 0;
     // in case if datasets is not provided, but data is present
-    if (!this.datasets || (!this.datasets.length && (this.data && this.data.length))) {
+    if (!this.datasets || (!this.datasets.length && this.data && this.data.length)) {
       if (Array.isArray(this.data[0])) {
         datasets = (this.data as Array<number[]>).map((data: number[], index: number) => {
           return { data, label: this.labels[index] || `Label ${index}` };

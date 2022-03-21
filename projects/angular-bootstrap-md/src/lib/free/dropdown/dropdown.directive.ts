@@ -12,21 +12,22 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
   ChangeDetectorRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
 import { BsDropdownConfig } from './dropdown.config';
-import { BsDropdownContainerComponent } from './dropdown-container.component';
 import { BsDropdownState } from './dropdown.state';
 import { BsComponentRef } from '../utils/component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './dropdown-menu.directive';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { takeUntil } from 'rxjs/operators';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbDropdown],[dropdown]',
   exportAs: 'bs-dropdown',
   template: '<ng-content></ng-content>',
@@ -34,7 +35,7 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   providers: [BsDropdownState],
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
@@ -50,9 +51,33 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() container: string;
-  @Input() dropup: boolean;
-  @Input() dropupDefault = false;
-  @Input() dynamicPosition = false;
+
+  @Input()
+  get dropup(): boolean {
+    return this._dropup;
+  }
+  set dropup(value: BooleanInput) {
+    this._dropup = coerceBooleanProperty(value);
+  }
+  private _dropup = false;
+
+  @Input()
+  get dropupDefault(): boolean {
+    return this._dropupDefault;
+  }
+  set dropupDefault(value: BooleanInput) {
+    this._dropupDefault = coerceBooleanProperty(value);
+  }
+  private _dropupDefault = false;
+
+  @Input()
+  get dynamicPosition(): boolean {
+    return this._dynamicPosition;
+  }
+  set dynamicPosition(value: BooleanInput) {
+    this._dynamicPosition = coerceBooleanProperty(value);
+  }
+  private _dynamicPosition = false;
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
@@ -73,10 +98,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Indicates that dropdown will be closed on item or document click,
    * and after pressing ESC
    */
-  @Input() set autoClose(value: boolean) {
-    if (typeof value === 'boolean') {
-      this._state.autoClose = value;
-    }
+  @Input() set autoClose(value: BooleanInput) {
+    this._state.autoClose = coerceBooleanProperty(value);
   }
 
   get autoClose(): boolean {
@@ -86,10 +109,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Disables dropdown toggle and hides dropdown menu if opened
    */
-  @Input() set isDisabled(value: boolean) {
-    this._isDisabled = value;
-    this._state.isDisabledChange.emit(value);
-    if (value) {
+  @Input() set isDisabled(value: BooleanInput) {
+    const isDisabled = coerceBooleanProperty(value);
+    this._isDisabled = isDisabled;
+    this._state.isDisabledChange.emit(isDisabled);
+    if (isDisabled) {
       this.hide();
     }
   }
@@ -111,8 +135,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     return this._dropdown.isShown;
   }
 
-  set isOpen(value: boolean) {
-    if (value) {
+  set isOpen(value: BooleanInput) {
+    const isOpen = coerceBooleanProperty(value);
+
+    if (isOpen) {
       this.show();
     } else {
       this.hide();
@@ -127,14 +153,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() onShown: EventEmitter<any>;
   @Output() shown: EventEmitter<any>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  // tslint:disable-next-line:no-output-on-prefix
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() onHidden: EventEmitter<any>;
   @Output() hidden: EventEmitter<any>;
 
@@ -150,7 +176,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   _isDisabled: boolean;
   _dropdown: ComponentLoader<BsDropdownContainerComponent>;
-  _dropup: boolean;
   _subscriptions: Subscription[] = [];
   _isInited = false;
   _isDropupDefault: boolean;
@@ -318,7 +343,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
       return;
     }
-    this._state.dropdownMenu.then(dropdownMenu => {
+    this._state.dropdownMenu.then((dropdownMenu) => {
       // check direction in which dropdown should be opened
       const _dropup = this.dropup === true || this.dropupDefault === true;
 
@@ -404,5 +429,42 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._destroy$.next();
     this._destroy$.complete();
     this._dropdown.dispose();
+  }
+}
+
+@Component({
+  selector: 'mdb-dropdown-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div
+      [class.dropup]="direction === 'up'"
+      [class.dropdown]="direction === 'down'"
+      [class.show]="isOpen"
+      [class.open]="isOpen"
+    >
+      <ng-content></ng-content>
+    </div>
+  `,
+})
+export class BsDropdownContainerComponent implements OnDestroy {
+  isOpen = false;
+
+  @HostBinding('style.display') display = 'block';
+  @HostBinding('style.position') position = 'absolute';
+
+  get direction(): 'down' | 'up' {
+    return this._state.direction;
+  }
+
+  private _subscription: any;
+
+  constructor(private _state: BsDropdownState) {
+    this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
+      this.isOpen = value;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 }

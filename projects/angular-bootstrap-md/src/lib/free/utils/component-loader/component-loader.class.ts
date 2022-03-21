@@ -1,4 +1,4 @@
-// tslint:disable:max-file-line-count
+/* eslint-disable max-lines */
 // todo: add delay support
 // todo: merge events onShow, onShown, etc...
 // todo: add global positioning configuration?
@@ -32,9 +32,9 @@ import { ListenOptions } from './listen-options.model';
 
 export class ComponentLoader<T> {
   onBeforeShow: EventEmitter<void> = new EventEmitter();
-  /* tslint:disable-next-line: no-any*/
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   onShown: EventEmitter<any> = new EventEmitter();
-  /* tslint:disable-next-line: no-any*/
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   onBeforeHide: EventEmitter<any> = new EventEmitter();
   onHidden: EventEmitter<boolean> = new EventEmitter();
   shown: EventEmitter<any> = new EventEmitter();
@@ -70,7 +70,7 @@ export class ComponentLoader<T> {
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  /* tslint:disable-next-line: no-any*/
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   private container: string | ElementRef | any;
 
   /**
@@ -92,7 +92,7 @@ export class ComponentLoader<T> {
    * `ComponentLoadFactory.attach`
    * @internal
    */
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   public constructor(
     private _viewContainerRef: ViewContainerRef,
     private _renderer: Renderer2,
@@ -134,11 +134,11 @@ export class ComponentLoader<T> {
   // todo: appendChild to element or document.querySelector(this.container)
 
   show(opts: {
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     content?: string | TemplateRef<any>;
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     data?: any;
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     [key: string]: any;
   } = {}
   ): ComponentRef<T> {
@@ -300,7 +300,7 @@ export class ComponentLoader<T> {
 
   attachInline(
     vRef: ViewContainerRef,
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     template: TemplateRef<any>
   ): ComponentLoader<T> {
     this._inlineViewRef = vRef.createEmbeddedView(template);
@@ -370,11 +370,11 @@ export class ComponentLoader<T> {
   }
 
   private _getContentRef(
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     content: string | TemplateRef<any> | any,
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     data?: any,
-    /* tslint:disable-next-line: no-any*/
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   ): ContentRef {
     if (!content) {
       return new ContentRef([]);

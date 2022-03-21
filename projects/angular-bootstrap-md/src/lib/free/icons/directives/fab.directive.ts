@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
-// tslint:disable-next-line:directive-selector
+// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({ selector: '[fab], [brands]' })
 export class FabDirective {
   constructor(private _el: ElementRef, private _r: Renderer2) {
