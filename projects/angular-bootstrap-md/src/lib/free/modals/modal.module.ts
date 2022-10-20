@@ -9,11 +9,10 @@ import { MDBModalService } from './modal.service';
 import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
-  declarations: [ModalBackdropComponent, ModalDirective, ModalContainerComponent],
-  imports: [A11yModule],
-  exports: [ModalBackdropComponent, ModalDirective],
-  entryComponents: [ModalBackdropComponent, ModalContainerComponent],
-  schemas: [NO_ERRORS_SCHEMA],
+    declarations: [ModalBackdropComponent, ModalDirective, ModalContainerComponent],
+    imports: [A11yModule],
+    exports: [ModalBackdropComponent, ModalDirective],
+    schemas: [NO_ERRORS_SCHEMA]
 })
 export class ModalModule {
   public static forRoot(): ModuleWithProviders<ModalModule> {

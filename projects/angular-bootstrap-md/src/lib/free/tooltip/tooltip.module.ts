@@ -7,10 +7,9 @@ import { ComponentLoaderFactory } from '../utils/component-loader/component-load
 import { PositioningService } from '../utils/positioning/positioning.service';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [TooltipDirective, TooltipContainerComponent],
-  exports: [TooltipDirective],
-  entryComponents: [TooltipContainerComponent],
+    imports: [CommonModule],
+    declarations: [TooltipDirective, TooltipContainerComponent],
+    exports: [TooltipDirective]
 })
 export class TooltipModule {
   public static forRoot(): ModuleWithProviders<TooltipModule> {
