@@ -4,7 +4,7 @@ import {
   Tree,
   chain,
 } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import {
   getAppModulePath,
   getProjectMainFile,
@@ -21,7 +21,7 @@ export default function(options: Schema): Rule {
     addMdbFreeModuleImport(options),
     addAngularAnimationsModule(options),
     addStylesAndScriptsToAngularJson(options),
-    addRobotoFontToIndexHtml(),
+    addRobotoFontToIndexHtml(options),
   ]);
 }
 
@@ -65,11 +65,11 @@ function addAngularAnimationsModule(options: Schema) {
   };
 }
 
-function addRobotoFontToIndexHtml() {
+function addRobotoFontToIndexHtml(options: Schema) {
   return (tree: Tree, context: SchematicContext) => {
     const fontUrl = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,600&display=swap';
     const workspace: any =getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace);
+    const project = getProjectFromWorkspace(workspace, options.project);
     const projectIndexFiles = getProjectIndexFiles(project);
     const logger = context.logger;
 

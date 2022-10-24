@@ -90,6 +90,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
 
   private _focusTrap: FocusTrap;
+
+  private _mousedownTarget: HTMLElement;
   // todo: implement _dialog
   _dialog: any;
 
@@ -106,12 +108,18 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
+      this._mousedownTarget !== event.target ||
       event.target !== this._element.nativeElement
     ) {
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
     this.hide(event);
+  }
+
+  @HostListener('mousedown', ['$event'])
+  public onMousedown(event: any): void {
+    this._mousedownTarget = event.target;
   }
 
   // todo: consider preventing default and stopping propagation
