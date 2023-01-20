@@ -9,7 +9,7 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { RouterLinkWithHref } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -19,7 +19,7 @@ import { RouterLinkWithHref } from '@angular/router';
   `,
 })
 export class LinksComponent implements AfterContentInit {
-  @ContentChildren(RouterLinkWithHref, { read: ElementRef, descendants: true })
+  @ContentChildren(RouterLink, { read: ElementRef, descendants: true })
   links: QueryList<ElementRef>;
 
   @Output() linkClick = new EventEmitter<any>();
