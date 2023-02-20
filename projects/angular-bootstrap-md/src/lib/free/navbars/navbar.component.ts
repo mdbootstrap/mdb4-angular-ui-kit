@@ -255,6 +255,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
           this.height = this.el.nativeElement.scrollHeight;
           this.collapse = true;
           this.renderer.setStyle(this.el.nativeElement, 'opacity', '');
+          this._cdRef.markForCheck();
         }, 4);
       }
     } else {
@@ -268,7 +269,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   }
 
   ngAfterContentChecked() {
-    if (this.el.nativeElement.firstElementChild) {
+    if (this.el.nativeElement.firstElementChild && this.isShown) {
       if (
         this._itemsLength !==
         this.el.nativeElement.firstElementChild.firstElementChild.children.length

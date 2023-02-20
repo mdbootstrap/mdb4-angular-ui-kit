@@ -16,16 +16,12 @@ import {
   StaticProvider,
   TemplateRef,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 
-import { PositioningOptions, PositioningService} from './../positioning/positioning.service';
+import { PositioningOptions, PositioningService } from './../positioning/positioning.service';
 
-import {
-  listenToTriggersV2,
-  registerEscClick,
-  registerOutsideClick
-} from './../../utilities';
+import { listenToTriggersV2, registerEscClick, registerOutsideClick } from './../../utilities';
 
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
@@ -105,8 +101,7 @@ export class ComponentLoader<T> {
   ) {}
 
   attach(compType: Type<T>): ComponentLoader<T> {
-    this._componentFactory = this._componentFactoryResolver
-      .resolveComponentFactory<T>(compType);
+    this._componentFactory = this._componentFactoryResolver.resolveComponentFactory<T>(compType);
 
     return this;
   }
@@ -133,16 +128,16 @@ export class ComponentLoader<T> {
 
   // todo: appendChild to element or document.querySelector(this.container)
 
-  show(opts: {
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    content?: string | TemplateRef<any>;
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    data?: any;
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    [key: string]: any;
-  } = {}
+  show(
+    opts: {
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      content?: string | TemplateRef<any>;
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      data?: any;
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      [key: string]: any;
+    } = {}
   ): ComponentRef<T> {
-
     this._subscribePositioning();
     this._innerComponent = null;
 
@@ -152,7 +147,7 @@ export class ComponentLoader<T> {
 
       const injector = Injector.create({
         providers: this._providers,
-        parent: this._injector
+        parent: this._injector,
       });
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
@@ -165,25 +160,20 @@ export class ComponentLoader<T> {
       Object.assign(this._componentRef.instance, opts);
 
       if (this.container instanceof ElementRef) {
-        this.container.nativeElement.appendChild(
-          this._componentRef.location.nativeElement
-        );
+        this.container.nativeElement.appendChild(this._componentRef.location.nativeElement);
       }
 
       if (typeof this.container === 'string' && typeof document !== 'undefined') {
-        const selectedElement = document.querySelector(this.container) ||
-                                document.querySelector(this.containerDefaultSelector);
+        const selectedElement =
+          document.querySelector(this.container) ||
+          document.querySelector(this.containerDefaultSelector);
 
         if (selectedElement) {
           selectedElement.appendChild(this._componentRef.location.nativeElement);
         }
       }
 
-      if (
-        !this.container &&
-        this._elementRef &&
-        this._elementRef.nativeElement.parentElement
-      ) {
+      if (!this.container && this._elementRef && this._elementRef.nativeElement.parentElement) {
         this._elementRef.nativeElement.parentElement.appendChild(
           this._componentRef.location.nativeElement
         );
@@ -224,9 +214,7 @@ export class ComponentLoader<T> {
     }
     this._componentRef.destroy();
     if (this._viewContainerRef && this._contentRef.viewRef) {
-      this._viewContainerRef.remove(
-        this._viewContainerRef.indexOf(this._contentRef.viewRef)
-      );
+      this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
     }
     if (this._contentRef.viewRef) {
       this._contentRef.viewRef.destroy();
@@ -285,7 +273,7 @@ export class ComponentLoader<T> {
       triggers: listenOpts.triggers,
       show,
       hide,
-      toggle
+      toggle,
     });
 
     return this;
@@ -319,7 +307,7 @@ export class ComponentLoader<T> {
         this._globalListener = registerOutsideClick(this._renderer, {
           targets: [target, this._elementRef.nativeElement],
           outsideClick: this._listenOpts.outsideClick,
-          hide: () => this._listenOpts.hide()
+          hide: () => this._listenOpts.hide(),
         });
       });
     }
@@ -328,7 +316,7 @@ export class ComponentLoader<T> {
       this._globalListener = registerEscClick(this._renderer, {
         targets: [target, this._elementRef.nativeElement],
         outsideEsc: this._listenOpts.outsideEsc,
-        hide: () => this._listenOpts.hide()
+        hide: () => this._listenOpts.hide(),
       });
     }
   }
@@ -347,7 +335,7 @@ export class ComponentLoader<T> {
         element: this._componentRef.location,
         target: this._elementRef,
         attachment: this.attachment,
-        appendToBody: this.container === 'body'
+        appendToBody: this.container === 'body',
       });
     });
 
@@ -373,7 +361,7 @@ export class ComponentLoader<T> {
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     content: string | TemplateRef<any> | any,
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    data?: any,
+    data?: any
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   ): ContentRef {
     if (!content) {
@@ -382,8 +370,7 @@ export class ComponentLoader<T> {
 
     if (content instanceof TemplateRef) {
       if (this._viewContainerRef) {
-        const _viewRef = this._viewContainerRef
-          .createEmbeddedView<TemplateRef<T>>(content);
+        const _viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
         _viewRef.markForCheck();
 
         return new ContentRef([_viewRef.rootNodes], _viewRef);
@@ -395,16 +382,16 @@ export class ComponentLoader<T> {
     }
 
     if (typeof content === 'function') {
-      const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(
-        content
-      );
+      const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(content);
 
       const modalContentInjector = Injector.create({
         providers: this._providers,
-        parent: this._injector
+        parent: this._injector,
       });
 
       const componentRef = contentCmptFactory.create(modalContentInjector);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Object.assign(componentRef.instance, data);
       this._applicationRef.attachView(componentRef.hostView);
 

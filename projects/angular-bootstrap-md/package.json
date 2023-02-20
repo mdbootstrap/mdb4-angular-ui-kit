@@ -1,17 +1,17 @@
 {
   "name": "angular-bootstrap-md",
   "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "schematics": "./schematics/collection.json",
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0",
-    "@angular/animations": "^14.0.0",
-    "@angular/forms": "^14.0.0",
-    "@angular/cdk": "^14.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/animations": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@angular/cdk": "^15.0.0"
   },
   "exports": {
     "./assets/img/*": {

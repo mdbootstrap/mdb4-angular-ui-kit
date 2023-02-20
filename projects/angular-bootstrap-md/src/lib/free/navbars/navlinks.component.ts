@@ -14,9 +14,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'navlinks',
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
 })
 export class NavlinksComponent implements AfterContentInit {
   @ContentChildren(RouterLink, { read: ElementRef, descendants: true })
